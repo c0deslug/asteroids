@@ -3,6 +3,8 @@
 # throughout this file
 import pygame
 from constants import *
+from player import *
+from circleshape import *
 
 def main():
     print("Starting Asteroids!")
@@ -12,6 +14,8 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     AstroClock = pygame.time.Clock()
+    PlayerShip = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/ 2)
+
     dt = 0 
     
     while True:
@@ -20,7 +24,9 @@ def main():
                 return
             
         screen.fill((0, 0, 0), rect=None, special_flags=0) # give 255, 165, 0 for orange - https://www.pygame.org/docs/ref/color.html
+        PlayerShip.draw(screen)
         pygame.display.flip()
+
 
         dt = (AstroClock.tick(60) / 1000)
 
