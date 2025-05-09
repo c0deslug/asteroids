@@ -22,14 +22,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            
+
+        PlayerShip.update(dt)    
         screen.fill((0, 0, 0), rect=None, special_flags=0) # give 255, 165, 0 for orange - https://www.pygame.org/docs/ref/color.html
         PlayerShip.draw(screen)
+        
         pygame.display.flip()
 
-
+        # limit the framerate to 60 FPS
         dt = (AstroClock.tick(60) / 1000)
-
+        
         #print(dt)
         #print(AstroClock.get_fps())
 
