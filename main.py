@@ -12,9 +12,17 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     pygame.init()
+
+    updatable = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    
+    Player.containers = (updatable, drawables)
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     AstroClock = pygame.time.Clock()
     PlayerShip = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/ 2)
+
+
 
     dt = 0 
     
@@ -23,9 +31,13 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        PlayerShip.update(dt)    
+        #PlayerShip.update(dt)
+        updatable.update(dt)    
+        
         screen.fill((0, 0, 0), rect=None, special_flags=0) # give 255, 165, 0 for orange - https://www.pygame.org/docs/ref/color.html
-        PlayerShip.draw(screen)
+        
+        for obj in drawables:
+            obj.draw(screen)
         
         pygame.display.flip()
 
