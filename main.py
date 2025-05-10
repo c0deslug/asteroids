@@ -2,11 +2,13 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
 from constants import *
 from player import *
 from circleshape import *
 from asteroid import *
 from asteroidfield import *
+
 
 def main():
     print("Starting Asteroids!")
@@ -40,13 +42,18 @@ def main():
         #PlayerShip.update(dt)
         updatable.update(dt)    
         
+        for ast in asteroids:
+            if ast.collcheck(PlayerShip):
+                print("Game over!")
+                sys.exit()
+
         screen.fill((0, 0, 0), rect=None, special_flags=0) # give 255, 165, 0 for orange - https://www.pygame.org/docs/ref/color.html
         
         for obj in drawables:
             obj.draw(screen)
-        
-        pygame.display.flip()
 
+
+        pygame.display.flip()
         # limit the framerate to 60 FPS
         dt = (AstroClock.tick(60) / 1000)
         
