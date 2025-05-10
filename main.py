@@ -16,21 +16,22 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
 
     pygame.init()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    AstroClock = pygame.time.Clock()
 
     updatable = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
-    asteroidfield = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
-    Player.containers = (updatable, drawables)
-    Asteroid.containers = (asteroids, updatable, drawables)
+    Asteroid.containers = (asteroids, updatable, drawables) # related to class of objects
+    Shot.containers = (shots, updatable, drawables)
     AsteroidField.containers = (updatable)
-
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    AstroClock = pygame.time.Clock()
+    asteroid_field = AsteroidField()
+    
+    Player.containers = (updatable, drawables)
     PlayerShip = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT/ 2)
-    AsteroidField()
-
+    
 
     dt = 0 
     
