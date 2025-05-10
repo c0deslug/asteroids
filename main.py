@@ -47,6 +47,13 @@ def main():
             if ast.collcheck(PlayerShip):
                 print("Game over!")
                 sys.exit()
+        #for ast in asteroids:
+            for pew in shots:
+                if ast.collcheck(pew):
+                    pew.kill()
+                    ast.split()
+                    #pygame.sprite.Sprite.kill(ast)
+                    #pygame.sprite.Sprite.kill(pew)
 
         screen.fill((0, 0, 0), rect=None, special_flags=0) # give 255, 165, 0 for orange - https://www.pygame.org/docs/ref/color.html
         
